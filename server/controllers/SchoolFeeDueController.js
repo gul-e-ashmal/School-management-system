@@ -42,7 +42,7 @@ const newSchoolFeeDue = CatchAsyncAwait(async (req, res) => {
         year
     }));
 
-    let schoolfeedue=[];
+    let schoolfeedue = [];
 
     // feedue.forEach(async (item) => {
     //     const FindItem = await SchoolFeeDueModel.find({ student: item.student });
@@ -73,11 +73,6 @@ const newSchoolFeeDue = CatchAsyncAwait(async (req, res) => {
             }
         })
     );
-
-    
-
-
-    // const schoolfeedue = await SchoolFeeDueModel.insertMany(feedue);
 
     console.log(schoolfeedue);
 
