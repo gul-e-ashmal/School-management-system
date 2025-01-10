@@ -42,6 +42,14 @@ const SIDENAV_ITEMS = [
         title: 'Transactions',
         path: '/',
         submenu: true,
+        subMenuItems: [
+            {
+                title: 'Fee Process', path: '/transactions/feeProcess'
+            },
+            {
+                title: 'School Fee Transaction', path: '/transactions/schoolFeeTransaction', subsubmenu: true,
+            },
+        ]
     },
     {
         title: 'Document View',
@@ -51,7 +59,12 @@ const SIDENAV_ITEMS = [
     {
         title: 'Reports',
         path: '/',
-        submenu: true
+        submenu: true,
+        subMenuItems: [
+            {
+                title: 'Fee Slip', path: '/transactions/feeSlip', subsubmenu: true,
+            }
+        ]
     },
     {
         title: 'Admin',
@@ -151,7 +164,7 @@ const FeeDefaultTable = [
 
         },
         isActive: true
-    } ,{
+    }, {
         feesID: 1,
         feeDescription: "",
         amount: 8000,
@@ -267,4 +280,4 @@ const FeeDefaultTable = [
     }
 ]
 
-module.exports = { SIDENAV_ITEMS,FeeDefaultTable }
+module.exports = { SIDENAV_ITEMS, FeeDefaultTable }

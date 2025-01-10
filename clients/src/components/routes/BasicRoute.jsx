@@ -11,11 +11,14 @@ import BranchSetup from '../../setup/school/branchSetup/page';
 import ClassWiseFeeStructure from '../../setup/school/classWiseFeeStructure/page';
 import FeeProcess from '../../transactions/feeProcess/page';
 import FeeSlip from '../../transactions/feeSlip/page';
+import FeeCollection from '../../transactions/feeCollection.jsx/page';
+import SchoolFeeTransaction from '../../transactions/schoolFeeTransaction.jsx/page';
 
 const BasicRoute = () => {
+
   return (
     <>
-    {/* setups */}
+      {/* setups */}
       <Route path='/' element={<BaseLayout />} />
       <Route path='/setup/school/bankSetup' element={<BankSetup />} />
       <Route path='/setup/school/sectionSetup' element={<SectionSetup />} />
@@ -30,6 +33,10 @@ const BasicRoute = () => {
       {/* transaction */}
       <Route path='/transactions/feeProcess' element={<FeeProcess />} />
       <Route path='/transactions/feeSlip' element={<FeeSlip />} />
+      <Route path='/transactions/feeCollection' element={<FeeCollection />} />
+
+      <Route path='/transactions/schoolFeeTransaction' element={<SchoolFeeTransaction />} />
+
 
     </>
   )

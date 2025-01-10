@@ -13,6 +13,8 @@ const SectionRoutes = require("./routes/SectionRoutes")
 const QuarterRoutes = require("./routes/QuarterRoutes")
 const StudentRoutes = require("./routes/StudentRoutes")
 const SchoolFeeDueRoutes = require("./routes/SchoolFeeDueRoutes")
+const SchoolFeeTransactionRoutes = require("./routes/SchoolFeeTransactionRoutes")
+
 
 const app = express();
 app.use(cors({
@@ -37,7 +39,9 @@ app.use("/setups/school", StudentRoutes)
 app.use("/setups/school", BankRoutes)
 
 // transactions
-app.use("/transactions",SchoolFeeDueRoutes )
+app.use("/transactions", SchoolFeeDueRoutes)
+app.use("/transactions", SchoolFeeTransactionRoutes)
+
 
 app.listen(process.env.PORT, () => {
     console.log(`listening at port  ${process.env.PORT}`)

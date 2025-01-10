@@ -1,45 +1,45 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useGetBranchQuery } from '../../redux/API/setup/school/branchSetupAPI';
-import { useGetClassQuery } from '../../redux/API/setup/school/classSetupAPI';
 import { useGetCompanyQuery } from '../../redux/API/setup/school/companySetupAPI';
 import { useGetSectionQuery } from '../../redux/API/setup/school/sectionSetupAPI';
-import { yearRanges } from '../../utils/utils';
+import { useGetClassQuery } from '../../redux/API/setup/school/classSetupAPI';
 import { useGetQuarterQuery } from '../../redux/API/setup/school/quarterSetupAPI';
-import { useGetFeeStructureQuery } from '../../redux/API/setup/school/feeStructureAPI';
-import { useCreateSchoolFeeTransactionMutation } from '../../redux/API/transaction/schoolFeeTransactionAPI';
 import toast from 'react-hot-toast';
+import { yearRanges } from '../../utils/utils';
+import { useGetBankQuery } from '../../redux/API/setup/school/bankSetupAPI';
 
-const SchoolFeeTrasactionForm = ({ setFormData, formData, edit, setShowFormPage }) => {
+const FeeCollectionForm = ({ formData, setFormData }) => {
 
   const { data: branchData } = useGetBranchQuery();
   const { data: companyData } = useGetCompanyQuery();
   const { data: classData } = useGetClassQuery();
   const { data: sectionData } = useGetSectionQuery();
   const { data: quarterData } = useGetQuarterQuery();
-  const { data: feeData } = useGetFeeStructureQuery();
+  const { data: bankData } = useGetBankQuery();
 
   useEffect(() => {
-    if (!edit) {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        ...(companyData?.company && { company: companyData.company[0]?._id }),
-        ...(branchData?.branch && { branch: branchData.branch[0]?._id }),
-        ...(quarterData?.quarter && { period: quarterData?.quarter[0]?._id }),
-        ...(sectionData?.section && { section: sectionData?.section[0]?._id }),
-        ...(feeData?.fee && { fee: feeData?.fee[0]?._id }),
-      }));
-    }
-  }, [companyData?.company, branchData?.branch, sectionData?.section, quarterData?.quarter, feeData?.fee])
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      ...(companyData?.company && { company: companyData.company[0]?._id }),
+      ...(branchData?.branch && { branch: branchData.branch[0]?._id }),
+      ...(quarterData?.quarter && { period: quarterData?.quarter[0]?._id }),
+      ...(classData?.classes && { classes: classData.classes[0]?._id }),
+      ...(sectionData?.section && { section: sectionData?.section[0]?._id }),
+      ...(bankData?.bank && { bank: bankData?.bank[0]?._id }),
+    }));
+  }, [companyData?.company, branchData?.branch, classData?.classes, sectionData?.section, quarterData?.quarter
+    , bankData?.bank
+  ])
 
-  const [createSchoolFeeTransaction, { data, isError, isSuccess }] = useCreateSchoolFeeTransactionMutation();
-  useEffect(() => {
-    if (isError) {
-      toast.error("Unable to add student detail")
-    }
-    if (isSuccess) {
-      toast.success("Student Detail entered successfully");
-    }
-  }, [isError, isSuccess])
+  // const [createSchoolFeeTransaction, { data, isError, isSuccess }] = useCreateSchoolFeeTransactionMutation();
+  // useEffect(() => {
+  //   if (isError) {
+  //     toast.error("Unable to add student detail")
+  //   }
+  //   if (isSuccess) {
+  //     toast.success("Student Detail entered successfully");
+  //   }
+  // }, [isError, isSuccess])
 
   // useEffect(() => {
   //     if (isEditError) {
@@ -52,18 +52,18 @@ const SchoolFeeTrasactionForm = ({ setFormData, formData, edit, setShowFormPage 
   // }, [isEditError, isEditSuccess])
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (edit) {
-      // updateStudent(formData);
-    }
-    else if (!edit) {
-      createSchoolFeeTransaction(formData);
-    }
+    // e.preventDefault();
+    // if (edit) {
+    //   // updateStudent(formData);
+    // }
+    // else if (!edit) {
+    //   createSchoolFeeTransaction(formData);
+    // }
   }
 
   return (
     <div className=' flex flex-col justify-center my-2 items-center'>
-      <h2 className='  heading'>{edit ? "Edit" : "Add"} Student </h2>
+      <h2 className='  heading'>{"Add"} Student </h2>
       <form className='  ' onSubmit={(e) => handleSubmit(e)}>
 
         <div className='grid grid-cols-2 bg-blue-100 p-6'>
@@ -103,8 +103,8 @@ const SchoolFeeTrasactionForm = ({ setFormData, formData, edit, setShowFormPage 
           <div className=' my-2'>
             <label htmlFor='quarter' className='  label'>Quarter:</label>
             <select name="quarter" id="quarter" className="select"
-              value={formData.period}
-              onChange={(e) => setFormData({ ...formData, period: e.target.value })}
+              value={formData.quarter}
+              onChange={(e) => setFormData({ ...formData, quarter: e.target.value })}
             >
               {
                 quarterData?.quarter?.length > 0 && quarterData?.quarter?.map((item, index) => (<option key={index} value={item._id}>{item.name} {item.period}</option>))
@@ -116,54 +116,32 @@ const SchoolFeeTrasactionForm = ({ setFormData, formData, edit, setShowFormPage 
             <label htmlFor='class' className=' label '>Class:</label>
             <select name="class" id="class" className='select ' value={formData.classes}
               onChange={(e) => setFormData({ ...formData, classes: e.target.value })}>
-              <option key={"all"} value={"all"}>all</option>
               {
                 classData?.classes?.length > 0 && classData?.classes?.map((item, index) => (<option key={index} value={item._id}>{item.name}</option>))
               }
             </select>
           </div>
 
-          <div className=' my-2'>
-            <label className=' label '>Section:</label>
-            <select name="" id="" className='select ' value={formData.section}
-              onChange={(e) => setFormData({ ...formData, section: e.target.value })}>
-              {
-                sectionData?.section?.length > 0 && sectionData?.section?.map((item, index) => (<option key={index} value={item._id}>{item.name}</option>))
-              }
-            </select>
-          </div>
+
 
           <div className=' my-2'>
-            <label htmlFor='transactionType' className='  label'>Transaction Type:</label>
-            <select name="transactionType" id="transactionType" className="select"
-              value={formData.transactionType}
-              onChange={(e) => setFormData({ ...formData, transactionType: e.target.value })}
-            >
-              {
-                ["All Class", "One Class", "Student"].map((item, index) => <option key={index} value={item}>{item}</option>)
-              }
-            </select>
-          </div>
-
-          <div className=' my-2'>
-            <label htmlFor='rollNo' className='label'>Student</label>
+            <label htmlFor='rollNo' className='label'>Roll No.</label>
             <input name='rollNo' id='rollNo' type='text' className=' textinput' value={formData.student} onChange={(e) => setFormData({ ...formData, student: e.target.value })} />
           </div>
 
-
           <div className=' my-2'>
-            <label className=' label '>Fee Id:</label>
-            <select name="" id="" className='select ' value={formData.fee}
-              onChange={(e) => setFormData({ ...formData, fee: e.target.value })}>
-              {
-                feeData?.fee?.length > 0 && feeData?.fee?.map((item, index) => (<option key={index} value={item._id}>{item.feeName}</option>))
-              }
-            </select>
+            <label htmlFor='transactionType' className='label'>Paid Date:</label>
+            <input name='feeAmount' id='feeAmount' type='date' className=' textinput ' value={formData.feeAmount} onChange={(e) => setFormData({ ...formData, feeAmount: e.target.value })} />
           </div>
 
 
           <div className=' my-2'>
-            <label htmlFor='feeAmount' className='label'>Fee Amount:</label>
+            <label htmlFor='feeAmount' className='label'>Paid Amount:</label>
+            <input name='feeAmount' id='feeAmount' type='number' className=' textinput ' value={formData.feeAmount} onChange={(e) => setFormData({ ...formData, feeAmount: e.target.value })} />
+          </div>
+
+          <div className=' my-2'>
+            <label htmlFor='feeAmount' className='label'>Les Amount:</label>
             <input name='feeAmount' id='feeAmount' type='number' className=' textinput ' value={formData.feeAmount} onChange={(e) => setFormData({ ...formData, feeAmount: e.target.value })} />
           </div>
 
@@ -173,14 +151,14 @@ const SchoolFeeTrasactionForm = ({ setFormData, formData, edit, setShowFormPage 
           </div>
         </div>
         <div className=' my-2 flex justify-center '>
-          <input type="submit" className=" submit cursor-pointer " value={edit ? "Update" : "Save"} />
+          <input type="submit" className=" submit cursor-pointer " value={"Save"} />
         </div>
 
-        <div onClick={() => setShowFormPage(false)} className=' cursor-pointer  underline hover:text-blue-600  text-center'> Back  </div>
+        {/* <div onClick={() => setShowFormPage(false)} className=' cursor-pointer  underline hover:text-blue-600  text-center'> Back  </div> */}
       </form>
 
     </div>
   )
 }
 
-export default SchoolFeeTrasactionForm
+export default FeeCollectionForm

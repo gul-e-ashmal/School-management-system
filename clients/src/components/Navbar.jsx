@@ -24,7 +24,7 @@ const Navbar = () => {
                                 {item.subMenuItems?.map((subItem, subKey) => (
                                     <li className="relative group px-1 onHover hover:bg-slate-400" key={subKey}>
                                         {/* Submenu Item */}
-                                        <Link href={subItem.path} className="flex flex-row justify-between">
+                                        <Link to={subItem.path} className="flex flex-row justify-between">
                                             <span> {subItem.title}</span>
                                             <span className="p-1">
                                                 <VscTriangleRight />

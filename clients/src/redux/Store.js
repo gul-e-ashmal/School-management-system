@@ -9,6 +9,7 @@ import { companySetupAPI } from "./API/setup/school/companySetupAPI";
 import { studentSetupAPI } from "./API/setup/school/studentSetupAPI";
 import { classWiseFeeStructureSetupAPI } from "./API/setup/school/classWIseFeeStructureAPI";
 import { schoolFeeDueSetupAPI } from "./API/setup/school/schoolFeeDueApi";
+import { schoolFeeTransactionSetupAPI } from "./API/transaction/schoolFeeTransactionAPI";
 
 const Store = configureStore({
     reducer: {
@@ -21,12 +22,13 @@ const Store = configureStore({
         [companySetupAPI.reducerPath]: companySetupAPI.reducer,
         [studentSetupAPI.reducerPath]: studentSetupAPI.reducer,
         [classWiseFeeStructureSetupAPI.reducerPath]: classWiseFeeStructureSetupAPI.reducer,
-        [schoolFeeDueSetupAPI.reducerPath]: schoolFeeDueSetupAPI.reducer
+        [schoolFeeDueSetupAPI.reducerPath]: schoolFeeDueSetupAPI.reducer,
+        [schoolFeeTransactionSetupAPI.reducerPath]: schoolFeeTransactionSetupAPI.reducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(
         [bankSetupAPI.middleware, sectionSetupAPI.middleware, classSetupAPI.middleware, quarterSetupAPI.middleware,
         feeStructureAPI.middleware, companySetupAPI.middleware, branchSetupAPI.middleware, studentSetupAPI.middleware,
-        classWiseFeeStructureSetupAPI.middleware,schoolFeeDueSetupAPI.middleware
+        classWiseFeeStructureSetupAPI.middleware, schoolFeeDueSetupAPI.middleware, schoolFeeTransactionSetupAPI.middleware
         ]
     ),
 },
