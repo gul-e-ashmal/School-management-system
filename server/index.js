@@ -31,7 +31,10 @@ connection();
 app.get("/", async(req, res) => {
 
     const classes=await ClassModel.find();    
-    res.send("helo working")
+    res.status(200).json({
+        success:"true",
+        classes
+    })
 })
 
 
