@@ -10,19 +10,19 @@ const ClassSetupForm = ({ formData, setFormData, edit }) => {
 
     useEffect(() => {
         if (isError) {
-            toast.error("Unable to add bank detail")
+            toast.error("Unable to add class detail")
         }
         if (isSuccess) {
-            toast.success("Bank Detail entered successfully");
+            toast.success("Class Detail entered successfully");
         }
     }, [isError, isSuccess])
 
     useEffect(() => {
         if (isEditError) {
-            toast.error("Unable to update bank detail")
+            toast.error("Unable to update class detail")
         }
         if (isEditSuccess) {
-            toast.success("Bank Detail updated successfully");
+            toast.success("Class Detail updated successfully");
         }
     }, [isEditError, isEditSuccess])
 

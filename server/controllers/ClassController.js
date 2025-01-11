@@ -8,6 +8,14 @@ const newClasses = CatchAsyncAwait(async (req, res) => {
 
     const classes = await Class.create({ name });
 
+    if (!classes) {
+
+        return res.status(400).json({
+            success: "false",
+            message: "Error in create class"
+        })
+    }
+
     return res.status(200).json({
         success: "true",
         classes
@@ -20,6 +28,15 @@ const getAllClasses = CatchAsyncAwait(async (req, res) => {
     filter.search();
 
     const classes = await filter.query;
+
+    console.log("classes")
+
+    if (!classes) {
+        return res.status(400).json({
+            success: "false",
+            message: "Error in getting class"
+        })
+    }
 
     return res.status(200).json({
         success: "true",

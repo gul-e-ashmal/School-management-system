@@ -7,6 +7,8 @@ import BaseLayout from './components/BaseLayout';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
+
+  console.log(process.env.REACT_APP_URL)
   const BasicRoute = useBasicRoute();
   return (
     <BrowserRouter>

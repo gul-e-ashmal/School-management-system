@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const branchSetupAPI = createApi({
     reducerPath: 'branchSetupAPI',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/setups/common' }),
+    baseQuery: fetchBaseQuery({ baseUrl: `${process.env.REACT_APP_URL}/setups/common` }),
     keepUnusedDataFor: 30,
     tagTypes: ["branch"],
     endpoints: (builder) => ({

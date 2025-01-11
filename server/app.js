@@ -21,6 +21,7 @@ app.use(cors({
     origin: 'http://localhost:3000', // Allow requests from your frontend
     // methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
+
 app.use(express.json());
 
 connection();

@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const schoolFeeDueSetupAPI = createApi({
     reducerPath: 'schoolFeeDueSetupAPI',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/transactions' }),
+    baseQuery: fetchBaseQuery({ baseUrl: `${process.env.REACT_APP_URL}/transactions` }),
     keepUnusedDataFor: 30,
     tagTypes: ["schoolFeeDue"],
     endpoints: (builder) => ({

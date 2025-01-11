@@ -6,6 +6,7 @@
     "@react-pdf/renderer": "^4.1.6",
     "@reduxjs/toolkit": "^2.5.0",
     "cra-template": "1.2.0",
+    "dotenv": "^16.4.7",
     "file-saver": "^2.0.5",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.2",
