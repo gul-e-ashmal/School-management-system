@@ -18,21 +18,27 @@ const ClassModel = require('./models/ClassModel');
 
 
 const app = express();
+
+app.options("", cors({
+    origin: `*`, // Allow requests from your frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE','PATCH'],
+    credential: true
+}))
 app.use(cors({
-    origin: `${process.env.URL}`, // Allow requests from your frontend
-    // methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
+    origin: `*`, // Allow requests from your frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE','PATCH'],
+    credential: true
 }));
 
 app.use(express.json());
 
 connection();
 
-app.get("/", async(req, res) => {
+app.get("/", async (req, res) => {
 
-    const classes=await ClassModel.find();    
+    const classes = await ClassModel.find();
     res.status(200).json({
-        success:"true",
+        success: "true",
         classes
     })
 })
