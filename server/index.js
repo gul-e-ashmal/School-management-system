@@ -13,7 +13,8 @@ const SectionRoutes = require("./routes/SectionRoutes")
 const QuarterRoutes = require("./routes/QuarterRoutes")
 const StudentRoutes = require("./routes/StudentRoutes")
 const SchoolFeeDueRoutes = require("./routes/SchoolFeeDueRoutes")
-const SchoolFeeTransactionRoutes = require("./routes/SchoolFeeTransactionRoutes")
+const SchoolFeeTransactionRoutes = require("./routes/SchoolFeeTransactionRoutes");
+const ClassModel = require('./models/ClassModel');
 
 
 const app = express();
@@ -27,7 +28,9 @@ app.use(express.json());
 
 connection();
 
-app.get("/", (req, res) => {
+app.get("/", async(req, res) => {
+
+    const classes=await ClassModel.find();    
     res.send("helo working")
 })
 
