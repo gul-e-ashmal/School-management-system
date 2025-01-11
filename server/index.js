@@ -27,6 +27,10 @@ app.use(express.json());
 
 connection();
 
+app.get("/", (req, res) => {
+    res.send("helo working")
+})
+
 
 app.use("/setups/common", BranchRoutes)
 app.use("/setups/common", CompanyRoutes)
