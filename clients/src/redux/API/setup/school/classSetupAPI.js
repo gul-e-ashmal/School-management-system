@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const classSetupAPI = createApi({
     reducerPath: 'classSetupAPI',
-    baseQuery: fetchBaseQuery({ baseUrl: `${process.env.REACT_APP_URL}setups/school` }),
+    baseQuery: fetchBaseQuery({ baseUrl: `${process.env.REACT_APP_URL}/setups/school` }),
     keepUnusedDataFor: 30,
     tagTypes: ["class"],
     endpoints: (builder) => ({

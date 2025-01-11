@@ -8,19 +8,19 @@ const SectionSetupForm = ({ formData, setFormData, edit }) => {
 
     useEffect(() => {
         if (isError) {
-            toast.error("Unable to add bank detail")
+            toast.error("Unable to add section detail")
         }
         if (isSuccess) {
-            toast.success("Bank Detail entered successfully");
+            toast.success("Section Detail entered successfully");
         }
     }, [isError, isSuccess])
 
     useEffect(() => {
         if (isEditError) {
-            toast.error("Unable to update bank detail")
+            toast.error("Unable to update section detail")
         }
         if (isEditSuccess) {
-            toast.success("Bank Detail updated successfully");
+            toast.success("Section Detail updated successfully");
         }
     }, [isEditError, isEditSuccess])
 
