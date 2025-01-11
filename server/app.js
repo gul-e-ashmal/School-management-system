@@ -18,8 +18,9 @@ const SchoolFeeTransactionRoutes = require("./routes/SchoolFeeTransactionRoutes"
 
 const app = express();
 app.use(cors({
-    origin: 'http://localhost:3000', // Allow requests from your frontend
+    origin: `${process.env.URL}`, // Allow requests from your frontend
     // methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials:true
 }));
 
 app.use(express.json());
