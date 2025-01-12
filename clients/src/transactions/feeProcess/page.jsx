@@ -11,7 +11,7 @@ const FeeProcess = () => {
     return (
         <BaseLayout>
             <div className='ms-2 xl:me-24 me-4 my-4 flex flex-col justify-center  '>
-                <h2 className=' heading '>Fee Process</h2>
+                <h2 className=' heading pageHeading'>Fee Process</h2>
                 <FeeProcessForm setFormData={setFormData} formData={formData} />
             </div>
         </BaseLayout>

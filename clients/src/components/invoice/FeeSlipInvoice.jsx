@@ -3,18 +3,7 @@ import React, { useEffect, useState } from 'react'
 // import jsPDF from "jspdf"
 import { Page, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
 
-// Font.register({
-//   family: 'Times New Roman',
-//   fonts: [
-//     {
-//       src: 'https://your-font-source/TimesNewRoman-Regular.ttf', // Regular
-//     },
-//     {
-//       src: 'https://your-font-source/TimesNewRoman-Bold.ttf', // Bold
-//       fontWeight: 'bold',
-//     },
-//   ],
-// });
+
 
 // Create styles
 const styles = StyleSheet.create({
@@ -29,7 +18,7 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
     flexGrow: 1,
-    fontSize: "11",
+    fontSize: "12",
     // fontFamily:"Times New Roman"
   },
   date: {
@@ -113,7 +102,7 @@ const FeeSlipInvoice = ({ data, length }) => {
 
               <View style={[styles.table, {}]}>
 
-                <View style={[{ flexDirection: "row", padding: "1", borderWidth: "1", fontWeight: "bold", justifyContent: "space-between", fontSize: "10" }]}>
+                <View style={[{ flexDirection: "row", padding: "1", borderWidth: "1", fontWeight: "bold", justifyContent: "space-between", fontSize: "11" }]}>
                   <View style={[{}]}>
                     <Text style={[{ padding: "3", paddingHorizontal: "1" }]}> Detail of Dues </Text>
                   </View>
@@ -134,6 +123,28 @@ const FeeSlipInvoice = ({ data, length }) => {
                     </View>
                   })
                 }
+              </View>
+
+              <View style={{ marginTop: "5" }}>
+                <View style={[{ flexDirection: "row", padding: "1", borderWidth: "1", fontWeight: "bold", justifyContent: "space-between", fontSize: "11" }]}>
+                  <View style={[{}]}>
+                    <Text style={[{ padding: "3", paddingHorizontal: "1" }]}> Total Amount Payable </Text>
+                  </View>
+                  <View style={[{ width: 50, alignSelf: "flex-end", borderLeftWidth: "1", paddingHorizontal: "2" }]}>
+                    <Text style={[{ padding: "3", paddingHorizontal: "1" }]}>{item?.fee?.reduce((sum, i) => sum + i.amount, 0)} </Text>
+                  </View>
+                </View>
+              </View>
+
+              <View style={{ marginTop: "2" }}>
+                <View style={[{ flexDirection: "row", padding: "1", borderWidth: "1", fontWeight: "bold", justifyContent: "space-between", fontSize: "11" }]}>
+                  <View style={[{}]}>
+                    <Text style={[{ padding: "3", paddingHorizontal: "1" }]}> Total Amount payable after due date  </Text>
+                  </View>
+                  <View style={[{ width: 50, alignSelf: "flex-end", borderLeftWidth: "1", paddingHorizontal: "2" }]}>
+                    <Text style={[{ padding: "3", paddingHorizontal: "1" }]}> {item?.fee?.reduce((sum, i) => sum + i.amount, 0) + 100} </Text>
+                  </View>
+                </View>
               </View>
 
             </View>
@@ -170,7 +181,7 @@ const FeeSlipInvoice = ({ data, length }) => {
 
               <View style={[styles.table, {}]}>
 
-                <View style={[{ flexDirection: "row", padding: "1", borderWidth: "1", fontWeight: "bold", justifyContent: "space-between", fontSize: "10" }]}>
+                <View style={[{ flexDirection: "row", padding: "1", borderWidth: "1", fontWeight: "bold", justifyContent: "space-between", fontSize: "11" }]}>
                   <View style={[{}]}>
                     <Text style={[{ padding: "3", paddingHorizontal: "1" }]}> Detail of Dues </Text>
                   </View>
@@ -191,6 +202,28 @@ const FeeSlipInvoice = ({ data, length }) => {
                     </View>
                   })
                 }
+              </View>
+
+              <View style={{ marginTop: "5" }}>
+                <View style={[{ flexDirection: "row", padding: "1", borderWidth: "1", fontWeight: "bold", justifyContent: "space-between", fontSize: "11" }]}>
+                  <View style={[{}]}>
+                    <Text style={[{ padding: "3", paddingHorizontal: "1" }]}> Total Amount Payable </Text>
+                  </View>
+                  <View style={[{ width: 50, alignSelf: "flex-end", borderLeftWidth: "1", paddingHorizontal: "2" }]}>
+                    <Text style={[{ padding: "3", paddingHorizontal: "1" }]}>{item?.fee?.reduce((sum, i) => sum + i.amount, 0)} </Text>
+                  </View>
+                </View>
+              </View>
+
+              <View style={{ marginTop: "2" }}>
+                <View style={[{ flexDirection: "row", padding: "1", borderWidth: "1", fontWeight: "bold", justifyContent: "space-between", fontSize: "11" }]}>
+                  <View style={[{}]}>
+                    <Text style={[{ padding: "3", paddingHorizontal: "1" }]}> Total Amount payable after due date  </Text>
+                  </View>
+                  <View style={[{ width: 50, alignSelf: "flex-end", borderLeftWidth: "1", paddingHorizontal: "2" }]}>
+                    <Text style={[{ padding: "3", paddingHorizontal: "1" }]}> {item?.fee?.reduce((sum, i) => sum + i.amount, 0) + 100} </Text>
+                  </View>
+                </View>
               </View>
 
             </View>
@@ -227,7 +260,7 @@ const FeeSlipInvoice = ({ data, length }) => {
 
               <View style={[styles.table, {}]}>
 
-                <View style={[{ flexDirection: "row", padding: "1", borderWidth: "1", fontWeight: "bold", justifyContent: "space-between", fontSize: "10" }]}>
+                <View style={[{ flexDirection: "row", padding: "1", borderWidth: "1", fontWeight: "bold", justifyContent: "space-between", fontSize: "11" }]}>
                   <View style={[{}]}>
                     <Text style={[{ padding: "3", paddingHorizontal: "1" }]}> Detail of Dues </Text>
                   </View>
@@ -249,6 +282,29 @@ const FeeSlipInvoice = ({ data, length }) => {
                   })
                 }
               </View>
+
+              <View style={{ marginTop: "5" }}>
+                <View style={[{ flexDirection: "row", padding: "1", borderWidth: "1", fontWeight: "bold", justifyContent: "space-between", fontSize: "11" }]}>
+                  <View style={[{}]}>
+                    <Text style={[{ padding: "3", paddingHorizontal: "1" }]}> Total Amount Payable </Text>
+                  </View>
+                  <View style={[{ width: 50, alignSelf: "flex-end", borderLeftWidth: "1", paddingHorizontal: "2" }]}>
+                    <Text style={[{ padding: "3", paddingHorizontal: "1" }]}>{item?.fee?.reduce((sum, i) => sum + i.amount, 0)} </Text>
+                  </View>
+                </View>
+              </View>
+
+              <View style={{ marginTop: "2" }}>
+                <View style={[{ flexDirection: "row", padding: "1", borderWidth: "1", fontWeight: "bold", justifyContent: "space-between", fontSize: "11" }]}>
+                  <View style={[{}]}>
+                    <Text style={[{ padding: "3", paddingHorizontal: "1" }]}> Total Amount payable after due date  </Text>
+                  </View>
+                  <View style={[{ width: 50, alignSelf: "flex-end", borderLeftWidth: "1", paddingHorizontal: "2" }]}>
+                    <Text style={[{ padding: "3", paddingHorizontal: "1" }]}> {item?.fee?.reduce((sum, i) => sum + i.amount, 0) + 100} </Text>
+                  </View>
+                </View>
+              </View>
+
             </View>
           </Page>
         })

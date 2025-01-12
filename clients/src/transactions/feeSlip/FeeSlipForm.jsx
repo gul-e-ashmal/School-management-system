@@ -71,8 +71,8 @@ const FeeSlipForm = ({ setFormData, formData }) => {
 
     return (
         <div className=' flex flex-col justify-center my-2 items-center'>
-            <form className='  p-6 ' onSubmit={handlesubmit}>
-                <div className='grid grid-cols-2 bg-blue-100 p-6'>
+            <form className='  ' onSubmit={handlesubmit}>
+                <div className='grid md:grid-cols-2 grid-cols-1 bg-blue-100 p-6'>
 
                     <div className=' my-2'>
                         <label className='  label'>Company:</label>

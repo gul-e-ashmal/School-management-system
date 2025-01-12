@@ -50,12 +50,12 @@ const SectionSetup = () => {
     return (
         <BaseLayout>
             <div className='ms-2 xl:me-24 me-4 my-4 flex flex-col justify-center '>
-                <h2 className=' heading'>Section Setup</h2>
+                <h2 className=' heading pageHeading'>Section Setup</h2>
                 <div className=' flex flex-col lg:flex-row justify-evenly'>
                     <SectionSetupForm formData={formData} setFormData={setFormData} edit={edit} />
                     <div className=' mt-7'>
-                        <div className=' flex flex-row justify-between items-center  text-[0.9rem] text-bold mt-4  '>
-                            <div className=' flex flex-row justify-center items-center border-blue-200  border-2'>
+                        <div className=' SearchAdd  '>
+                            <div className=' search'>
                                 <input type='text' className=' w-56  px-1' placeholder='Search' value={search} onChange={(e) => setSearch(e.target.value)} />
                                 <button onClick={handleSearch}> <FaSearch size={24} className=' p-1 px-1 w-8 text-white bg-blue-400' /></button>
                             </div>

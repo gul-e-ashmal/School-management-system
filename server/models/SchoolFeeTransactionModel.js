@@ -6,8 +6,9 @@ const SchoolFeeTransaction = mongoose.Schema({
 
     },
     student: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "student"
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: "student"
+        type: String
     },
     company: {
         type: mongoose.Schema.Types.ObjectId,

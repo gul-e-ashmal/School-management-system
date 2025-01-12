@@ -24,10 +24,10 @@ export const schoolFeeDueSetupAPI = createApi({
                 }
             }
         }),
-        updateQuarter: builder.mutation({
+        updatePaidAmountSchoolFeeDue: builder.mutation({
             query(body) {
                 return {
-                    url: `/quarter/${body._id}`,
+                    url: `/schoolFeeDue/updatePaidAmount`,
                     method: "PUT",
                     body: body
                 }
@@ -47,4 +47,4 @@ export const schoolFeeDueSetupAPI = createApi({
 
 })
 
-export const { useLazyGetSchoolFeeDueQuery, useCreateSchoolFeeDueMutation } = schoolFeeDueSetupAPI
+export const { useLazyGetSchoolFeeDueQuery, useCreateSchoolFeeDueMutation,useUpdatePaidAmountSchoolFeeDueMutation } = schoolFeeDueSetupAPI

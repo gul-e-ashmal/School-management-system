@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast';
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Pagination from 'react-js-pagination';
+import { useDeleteSchoolFeeTransactionMutation } from '../../redux/API/transaction/schoolFeeTransactionAPI';
 
 const SchoolFeeTransactionTable = ({ fetchedData, setFormData, setShowFormPage, setEdit }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,35 +17,24 @@ const SchoolFeeTransactionTable = ({ fetchedData, setFormData, setShowFormPage, 
 
   }, [currentPage, fetchedData])
 
-  // const [deleteStudent, { isError, isSuccess, error }] = useDeleteStudentMutation();
+  const [deleteSchoolFeeTransaction, { isError, isSuccess, error }] = useDeleteSchoolFeeTransactionMutation();
 
   const handleDelete = (id) => {
-    // deleteStudent({ id })
+    deleteSchoolFeeTransaction({ id })
   }
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     toast.success("Delete successfully")
-  //   }
-  //   if (error) {
-  //     toast.error("Unable to delete")
-  //   }
-  // }, [isError, isSuccess])
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Delete successfully")
+    }
+    if (error) {
+      toast.error("Unable to delete")
+    }
+  }, [isError, isSuccess])
 
   const handleEdit = (item) => {
-    let updateFee = item?.fee ? item?.fee?.map((data, index) => {
-      return {
-        _id: data._id._id,
-        feeName: data._id.feeName,
-        amount: data.amount,
-        sortOrder: data.sortOrder,
-        isActive: data.isActive
-      }
-    }) : [];
     setFormData({
-      _id: item._id, rollNo: item.rollNo, name: item.name, fatherName: item.fatherName, gender: item.gender, company: item.company._id, branch: item.branch._id, classes: item.class._id,
-      section: item.section, department: item.department,
-      address1: item.address1, address2: item.address2, phoneNo: item.phoneNo, admissionDate: item.admissionDate, leavingDate: item.leavingDate, feeConcession: item.feeConcession, currentFee: item.currentFee,
-      computerFee: item.computerFee, bookPrice: item.bookPrice, refundAmount: item.refundAmount, refundDate: item.refundDate, fee: updateFee
+      _id: item._id, company: item.company._id, branch: item.branch._id, year: item.year, period: item.period._id, classes: item?.class?._id, section: item?.section?._id, student: item?.student,
+      transactionType: item.transactionType, fee: item?.fee?._id, feeAmount: item.feeAmount, remarks: item.remarks
     })
     setEdit(true);
     setShowFormPage(true)
@@ -62,6 +52,7 @@ const SchoolFeeTransactionTable = ({ fetchedData, setFormData, setShowFormPage, 
           <thead>
             <tr className=' text-center'>
               <th className="  border border-gray-300 px-2 py-1">Actions</th>
+              <th className="  border border-gray-300 px-2 py-1">_id</th>
               <th className="  border border-gray-300 px-2 py-1">Company</th>
               <th className="  border border-gray-300 px-2 py-1">Branch</th>
               <th className="  border border-gray-300 px-2 py-1">Year</th>
@@ -88,12 +79,12 @@ const SchoolFeeTransactionTable = ({ fetchedData, setFormData, setShowFormPage, 
                   <td className="border border-gray-300 px-2 py-2">{item.company?.name}</td>
                   <td className="border border-gray-300 px-2 py-2">{item.branch?.name}</td>
                   <td className="border border-gray-300 px-2 py-2">{item.year}</td>
-                  <td className="border border-gray-300 px-2 py-2">{item.quarter?.name}</td>
+                  <td className="border border-gray-300 px-2 py-2">{item.period?.name}</td>
                   <td className="border border-gray-300 px-2 py-2">{item.class?.name}</td>
                   <td className="border border-gray-300 px-2 py-2">{item.section?.name}</td>
                   <td className="border border-gray-300 px-2 py-2">{item.transactionType}</td>
                   <td className="border border-gray-300 px-2 py-2">{item.student?.name}</td>
-                  <td className="border border-gray-300 px-2 py-2">{item.feeId}</td>
+                  <td className="border border-gray-300 px-2 py-2">{item.fee?.feeName}</td>
                   <td className="border border-gray-300 px-2 py-2">{item.feeAmount}</td>
                   <td className="border border-gray-300 px-2 py-2">{item.remarks}</td>
                 </tr>

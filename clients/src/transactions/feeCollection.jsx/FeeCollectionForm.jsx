@@ -7,6 +7,7 @@ import { useGetQuarterQuery } from '../../redux/API/setup/school/quarterSetupAPI
 import toast from 'react-hot-toast';
 import { yearRanges } from '../../utils/utils';
 import { useGetBankQuery } from '../../redux/API/setup/school/bankSetupAPI';
+import { useUpdatePaidAmountSchoolFeeDueMutation } from '../../redux/API/setup/school/schoolFeeDueApi';
 
 const FeeCollectionForm = ({ formData, setFormData }) => {
 
@@ -24,49 +25,35 @@ const FeeCollectionForm = ({ formData, setFormData }) => {
       ...(branchData?.branch && { branch: branchData.branch[0]?._id }),
       ...(quarterData?.quarter && { period: quarterData?.quarter[0]?._id }),
       ...(classData?.classes && { classes: classData.classes[0]?._id }),
-      ...(sectionData?.section && { section: sectionData?.section[0]?._id }),
+      // ...(sectionData?.section && { section: sectionData?.section[0]?._id }),
       ...(bankData?.bank && { bank: bankData?.bank[0]?._id }),
     }));
-  }, [companyData?.company, branchData?.branch, classData?.classes, sectionData?.section, quarterData?.quarter
+  }, [companyData?.company, branchData?.branch, classData?.classes, quarterData?.quarter
     , bankData?.bank
   ])
 
-  // const [createSchoolFeeTransaction, { data, isError, isSuccess }] = useCreateSchoolFeeTransactionMutation();
-  // useEffect(() => {
-  //   if (isError) {
-  //     toast.error("Unable to add student detail")
-  //   }
-  //   if (isSuccess) {
-  //     toast.success("Student Detail entered successfully");
-  //   }
-  // }, [isError, isSuccess])
+  const [updatePaidAmountSchoolFeeDue, { data, isError, isSuccess }] = useUpdatePaidAmountSchoolFeeDueMutation();
 
-  // useEffect(() => {
-  //     if (isEditError) {
-  //         toast.error("Unable to update Student detail")
-  //     }
-  //     if (isEditSuccess) {
-  //         toast.success("Student Detail updated successfully");
-  //         setShowFormPage(false);
-  //     }
-  // }, [isEditError, isEditSuccess])
+  useEffect(() => {
+    if (isError) {
+      toast.error("Unable to collect fee")
+    }
+    if (isSuccess) {
+      toast.success("Fee Collected successfully");
+    }
+  }, [isError, isSuccess])
+
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
-    // if (edit) {
-    //   // updateStudent(formData);
-    // }
-    // else if (!edit) {
-    //   createSchoolFeeTransaction(formData);
-    // }
+    e.preventDefault();
+    updatePaidAmountSchoolFeeDue(formData);
   }
 
   return (
     <div className=' flex flex-col justify-center my-2 items-center'>
-      <h2 className='  heading'>{"Add"} Student </h2>
       <form className='  ' onSubmit={(e) => handleSubmit(e)}>
 
-        <div className='grid grid-cols-2 bg-blue-100 p-6'>
+        <div className='grid md:grid-cols-2 grid-cols-2 bg-blue-100 p-6'>
 
           <div className=' my-2'>
             <label className='  label'>Company:</label>
@@ -104,7 +91,7 @@ const FeeCollectionForm = ({ formData, setFormData }) => {
             <label htmlFor='quarter' className='  label'>Quarter:</label>
             <select name="quarter" id="quarter" className="select"
               value={formData.quarter}
-              onChange={(e) => setFormData({ ...formData, quarter: e.target.value })}
+              onChange={(e) => setFormData({ ...formData, period: e.target.value })}
             >
               {
                 quarterData?.quarter?.length > 0 && quarterData?.quarter?.map((item, index) => (<option key={index} value={item._id}>{item.name} {item.period}</option>))
@@ -126,23 +113,23 @@ const FeeCollectionForm = ({ formData, setFormData }) => {
 
           <div className=' my-2'>
             <label htmlFor='rollNo' className='label'>Roll No.</label>
-            <input name='rollNo' id='rollNo' type='text' className=' textinput' value={formData.student} onChange={(e) => setFormData({ ...formData, student: e.target.value })} />
+            <input name='rollNo' id='rollNo' type='text' className=' textinput' value={formData.rollNo} onChange={(e) => setFormData({ ...formData, rollNo: e.target.value })} />
           </div>
 
           <div className=' my-2'>
-            <label htmlFor='transactionType' className='label'>Paid Date:</label>
-            <input name='feeAmount' id='feeAmount' type='date' className=' textinput ' value={formData.feeAmount} onChange={(e) => setFormData({ ...formData, feeAmount: e.target.value })} />
+            <label htmlFor='paidDate' className='label'>Paid Date:</label>
+            <input name='paidDate' id='paidDate' type='date' className=' textinput ' value={formData.paidDate} onChange={(e) => setFormData({ ...formData, paidDate: e.target.value })} />
           </div>
 
 
           <div className=' my-2'>
-            <label htmlFor='feeAmount' className='label'>Paid Amount:</label>
-            <input name='feeAmount' id='feeAmount' type='number' className=' textinput ' value={formData.feeAmount} onChange={(e) => setFormData({ ...formData, feeAmount: e.target.value })} />
+            <label htmlFor='paidAmount' className='label'>Paid Amount:</label>
+            <input name='paidAmount' id='paidAmount' type='number' className=' textinput ' value={formData.paidAmount} onChange={(e) => setFormData({ ...formData, paidAmount: e.target.value })} />
           </div>
 
           <div className=' my-2'>
-            <label htmlFor='feeAmount' className='label'>Les Amount:</label>
-            <input name='feeAmount' id='feeAmount' type='number' className=' textinput ' value={formData.feeAmount} onChange={(e) => setFormData({ ...formData, feeAmount: e.target.value })} />
+            <label htmlFor='lesPaid' className='label'>Les Paid:</label>
+            <input name='lesPaid' id='lesPaid' type='number' className=' textinput ' value={formData.lesPaid} onChange={(e) => setFormData({ ...formData, lesPaid: e.target.value })} />
           </div>
 
           <div className=' my-2'>

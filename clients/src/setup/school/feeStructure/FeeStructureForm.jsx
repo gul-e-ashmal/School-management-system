@@ -60,7 +60,7 @@ const FeeStructureForm = ({ setShowFormPage, formData, setFormData, edit }) => {
     }
     return (
         <div className=' flex flex-col justify-center my-2 items-center'>
-            <h2 className='  heading'>{edit ? "Edit" : "Add"} Fee Structure </h2>
+            <h2 className='  heading '>{edit ? "Edit" : "Add"} Fee Structure </h2>
             <form className=' bg-blue-100 p-6 ' onSubmit={(e) => handleSubmit(e)}>
 
                 <div className=' my-2'>

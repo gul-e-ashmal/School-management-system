@@ -4,7 +4,7 @@ import Header from "./Header"
 
 const MainLayout = ({ children }) => {
     return (
-            <div className=" m-8 border-black border-2 bg-white relative">
+            <div className=" md:m-8 md:border-black md:border-2  bg-white relative">
                 <Header />
                 {children}
                 {/* <Footer /> */}
@@ -12,5 +12,5 @@ const MainLayout = ({ children }) => {
 
     )
 }
-
+// sm:m-8 sm:border-black sm:border-2
 export default MainLayout

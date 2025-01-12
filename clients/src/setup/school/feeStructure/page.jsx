@@ -60,13 +60,13 @@ const FeeStructure = () => {
     return (
         <BaseLayout>
             {!showFormPage ? <div className='ms-2 xl:me-24 me-4 my-4 flex flex-col justify-center  '>
-                <h2 className=' heading '>Fee Structure/Defaults Setup</h2>
-                <div className=' flex flex-row justify-between items-center text-[0.9rem] text-bold mt-4 '>
-                    <div className=' flex flex-row justify-center items-center border-blue-200  border-2'>
+                <h2 className=' heading pageHeading'>Fee Structure/Defaults Setup</h2>
+                <div className=' SearchAdd '>
+                    <div className=' search'>
                         <input type='text' className=' w-56  px-1' placeholder='Search' value={search} onChange={(e) => setSearch(e.target.value)} />
                         <button onClick={handleSearch}> <FaSearch size={24} className=' p-1 px-1 w-8 text-white bg-blue-400' /></button>
                     </div>
-                    <button onClick={handleAddButton} className=' hover:bg-gray-400 bg-gradient-to-b from-blue-300 to-blue-600 text-center border-white rounded-md border-1 shadow-sm w-24  p-1 bg-blue-300 text-white text-bold m-[1px]'>Add New</button>
+                    <button onClick={handleAddButton} className='my-2 md:my-0 hover:bg-gray-400 bg-gradient-to-b from-blue-300 to-blue-600 text-center border-white rounded-md border-1 shadow-sm w-24  p-1 bg-blue-300 text-white text-bold m-[1px]'>Add New</button>
                 </div>
                 <div className=''>
                     <FeeStructureTable fetchedData={fetchedData} setEdit={setEdit} setFormData={setFormData} setShowFormPage={setShowFormPage} />

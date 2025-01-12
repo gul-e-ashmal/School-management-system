@@ -47,9 +47,10 @@ const BranchSetupForm = ({ setShowFormPage, formData, setFormData, edit }) => {
     }
     return (
         <div className=' flex flex-col justify-center my-2 items-center'>
-            <h2 className='  heading'>{edit ? "Edit" : "Add"} Bank Setup </h2>
+            <h2 className='  heading'>{edit ? "Edit" : "Add"} Branch Setup </h2>
             <form className=' bg-blue-100 p-6  ' onSubmit={(e) => handleSubmit(e)}>
-                <div className='grid grid-cols-2'>
+                <div className='md:grid md:grid-cols-2'>
+
                     <div className=' my-2'>
                         <label className='  label'>Company:</label>
                         <select name="" id="" className="select" value={formData.company}

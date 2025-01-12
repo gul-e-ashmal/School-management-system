@@ -28,7 +28,7 @@ const MenuItem = ({ item }) => {
         <div className=''  >
 
             {item?.submenu && (<button className=' flex flex-row'>
-                <span className=' p-1 ' onClick={()=>setToggleMenuItem(!toggleMenuItem)}><VscTriangleRight/></span>
+                <span className=' p-1 ' onClick={() => setToggleMenuItem(!toggleMenuItem)}><VscTriangleRight /></span>
                 <span>{item.title}</span>
             </button>)}
 
@@ -36,7 +36,7 @@ const MenuItem = ({ item }) => {
                 item?.submenu && toggleMenuItem && (item?.subMenuItems?.map((i, k) => (
                     <div className=' ml-4 ' key={k}>
                         <Link href={i.path} className=' flex flex-row'>
-                            <span className='p-1'><VscTriangleRight/></span> 
+                            <span className='p-1'><VscTriangleRight /></span>
                             <span>{i.title} </span>
                         </Link>
                     </div>)

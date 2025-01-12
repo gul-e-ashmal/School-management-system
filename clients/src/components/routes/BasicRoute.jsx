@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route } from "react-router-dom";
 import BankSetup from '../../setup/school/bankSetup/page';
-import BaseLayout from '../BaseLayout';
 import SectionSetup from '../../setup/school/sectionSetup/page';
 import ClassSetup from '../../setup/school/classSetup/page';
 import QuarterSetup from '../../setup/school/quarterSetup/page';
@@ -13,13 +12,14 @@ import FeeProcess from '../../transactions/feeProcess/page';
 import FeeSlip from '../../transactions/feeSlip/page';
 import FeeCollection from '../../transactions/feeCollection.jsx/page';
 import SchoolFeeTransaction from '../../transactions/schoolFeeTransaction.jsx/page';
+import HomePage from '../HomePage';
 
 const BasicRoute = () => {
 
   return (
     <>
       {/* setups */}
-      <Route path='/' element={<BaseLayout />} />
+      <Route path='/' element={<HomePage />} />
       <Route path='/setup/school/bankSetup' element={<BankSetup />} />
       <Route path='/setup/school/sectionSetup' element={<SectionSetup />} />
       <Route path='/setup/school/classSetup' element={<ClassSetup />} />

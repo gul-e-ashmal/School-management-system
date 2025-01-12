@@ -6,16 +6,8 @@ const SIDENAV_ITEMS = [
         subMenuItems: [
             {
                 title: 'Common', path: '/setup', subsubmenu: true,
-                subsubMenuItems: [
-                    { title: 'Fee Structure', path: '/setup/feeStructure' },
-                    { title: 'Class Setup', path: '/setup/classSetup' },
-                    { title: 'Section Setup', path: '/setup/sectionSetup' },
-                    { title: 'Student Registration', path: '/setup/studentSetup' },
-                    { title: 'Period Setup/Quarter', path: '/setup/quarterSetup' },
-                    { title: 'Bank Setup', path: '/setup/bankSetup' }
-                ]
             },
-            { title: 'Accounts', path: '/setup/classSetup' },
+            { title: 'Accounts', path: '/setup/' },
             { title: 'Inventory', path: '/setup/sectionSetup' },
             { title: 'Payroll', path: '/setup/studentSetup' },
             { title: 'HR & Admin', path: '/setup/quarterSetup' },
@@ -45,6 +37,9 @@ const SIDENAV_ITEMS = [
         subMenuItems: [
             {
                 title: 'Fee Process', path: '/transactions/feeProcess'
+            },
+            {
+                title: 'Fee Collection', path: '/transactions/feeCollection'
             },
             {
                 title: 'School Fee Transaction', path: '/transactions/schoolFeeTransaction', subsubmenu: true,

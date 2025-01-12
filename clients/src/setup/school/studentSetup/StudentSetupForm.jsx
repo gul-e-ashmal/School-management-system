@@ -96,10 +96,10 @@ const StudentSetupForm = ({ setShowFormPage, formData, setFormData, edit }) => {
     }
 
     return (
-        <div className=' flex flex-col justify-center my-2 items-center'>
+        <div className=' flex flex-col justify-center my-2 items-center '>
             <h2 className='  heading'>{edit ? "Edit" : "Add"} Student </h2>
             <form className='  ' onSubmit={(e) => handleSubmit(e)}>
-                <div className='grid grid-cols-3 bg-blue-100 p-6'>
+                <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 bg-blue-100 p-6 items-center'>
                     <div className=' my-2'>
                         <label className='  label'>Company:</label>
                         <select name="" id="" className="select" value={formData.company}
@@ -230,8 +230,9 @@ const StudentSetupForm = ({ setShowFormPage, formData, setFormData, edit }) => {
                 <div className='flex justify-end '>
                     <button onClick={handleFetch} className='submit text-center cursor-pointer'> Fetch</button>
                 </div>
-
-                <table className=" w-[100%]  table-auto border-collapse border border-gray-300 text-left my-2 whitespace-nowrap">
+                {/* w-80 sm:w-96 md:w-full */}
+                <div className=' w-80 sm:w-96 md:w-full overflow-x-auto cursor-pointer'>
+                    <table className=" w-[100%]  table-auto border-collapse border border-gray-300 text-left my-2 whitespace-nowrap">
                     <thead>
                         <tr className=' text-center'>
                             <th className="  border border-gray-300 px-2 py-1">Fees ID</th>
@@ -264,6 +265,9 @@ const StudentSetupForm = ({ setShowFormPage, formData, setFormData, edit }) => {
                         }
                     </tbody>
                 </table>
+                </div>
+
+
 
 
 

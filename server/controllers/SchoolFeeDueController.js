@@ -1,4 +1,5 @@
 const SchoolFeeDueModel = require("../models/SchoolFeeDueModel");
+const SchoolFeeTransactionModel = require("../models/SchoolFeeTransactionModel");
 const StudentModel = require("../models/StudentModel");
 const CatchAsyncAwait = require("../utils/CatchAsyncAwait");
 const { GetClassId, GetSectionId, GetStudentId } = require("../utils/StuFeeDueHelper");
@@ -43,18 +44,6 @@ const newSchoolFeeDue = CatchAsyncAwait(async (req, res) => {
     }));
 
     let schoolfeedue = [];
-
-    // feedue.forEach(async (item) => {
-    //     const FindItem = await SchoolFeeDueModel.find({ student: item.student });
-
-    //     if (FindItem) {
-    //         let document=await SchoolFeeDueModel.findByIdAndUpdate(FindItem._id, { ...item }, { new: true });
-    //         schoolfeedue.push(document);
-    //     } else {
-    //        let document= await SchoolFeeDueModel.create(item);
-    //         schoolfeedue.psuh(document);
-    //     }
-    // })
 
     await Promise.all(
         feedue.map(async (item) => {
@@ -113,8 +102,28 @@ const getAllSchoolFeeDue = CatchAsyncAwait(async (req, res) => {
         .populate("section", "name")
         .populate("class", "name")
         .populate("period", "name period")
-        .populate("student", "rollNo name fatherName")
+        .populate("student", "rollNo name fatherName ")
         .populate("fee._id", "feeName");
+
+    await Promise.all(schoolfeedue.map(async (item) => {
+
+        let transactions = await SchoolFeeTransactionModel.find({
+            company, branch, period, year, $or: [
+                { transactionType: "Student", student: item.student.rollNo },         // Transactions for the specific student
+                { transactionType: "One Class", class: item.class, section: item.section },             // Transactions for the student's class
+                { transactionType: "One Class", class: item.class },         // Transactions for the student's section
+                { transactionType: "All Class" }  // Transactions applicable to all students
+            ]
+        }).populate("fee", "feeName");
+
+        transactions.map((i) => {
+            item.fee.push({
+                _id: i.fee,
+                amount: i.feeAmount
+            })
+        })
+
+    }));
 
     return res.status(200).json({
         success: "true",
@@ -123,18 +132,39 @@ const getAllSchoolFeeDue = CatchAsyncAwait(async (req, res) => {
 })
 
 // setups/common/feeStructure/
-const updateSchoolFeeDue = CatchAsyncAwait(async (req, res) => {
+const updatePaidAmountSchoolFeeDue = CatchAsyncAwait(async (req, res) => {
+
+    const { company, branch, year, period, classes, paidAmount, lesPaid, paidDate, rollNo, remarks, bank } = req.body;
+
+
+    let student = await StudentModel.findOne({ company, branch, class: classes, rollNo });
+
+    let schoolFeeDue = await SchoolFeeDueModel.findOneAndUpdate(
+        { company, branch, class: classes, period, year, student },
+        { paidAmount, vDate: paidDate },
+        { new: true }
+    );
+
+    if (!schoolFeeDue) {
+        return res.status(404).json({
+            message: "SchoolFee due not found"
+        })
+    }
+
     return res.status(200).json({
         success: "true",
+        schoolFeeDue
     })
 })
 
 // setups/common/feeStructure/
 const deleteSchoolFeeDue = CatchAsyncAwait(async (req, res) => {
+
+    // const 
     return res.status(200).json({
         message: "Deleted successfullly"
     })
 })
 
 
-module.exports = { newSchoolFeeDue, getAllSchoolFeeDue, updateSchoolFeeDue, deleteSchoolFeeDue }
+module.exports = { newSchoolFeeDue, getAllSchoolFeeDue, updatePaidAmountSchoolFeeDue, deleteSchoolFeeDue }
