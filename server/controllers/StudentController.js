@@ -9,10 +9,12 @@ const newStudent = CatchAsyncAwait(async (req, res) => {
         admissionDate, leavingDate, feeConcession, currentFee, computerFee, bookPrice, refundAmount, refundDate, fee
     } = req.body
 
-    let student = await Student.find({ company, branch, class: classes, section, rollNo });
+    let student = await Student.findOne({ company, branch, class: classes, section, rollNo });
+
+    console.log(student);
 
     if (!student) {
-        student = await Student.create({
+       student = await Student.create({
             rollNo, name, fatherName, gender, company, branch, class: classes, section, department, address1, address2, phoneNo,
             admissionDate, leavingDate, feeConcession, currentFee, computerFee, bookPrice, refundAmount, refundDate, fee
         });
