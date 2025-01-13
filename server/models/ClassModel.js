@@ -6,7 +6,7 @@ const ClassSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
-        enum: ["prenur", "nursery", "prep", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
+        // enum: ["prenur", "nursery", "prep", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
     },
 
 }, { timestamp: true })

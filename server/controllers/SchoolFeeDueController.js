@@ -116,14 +116,19 @@ const getAllSchoolFeeDue = CatchAsyncAwait(async (req, res) => {
             ]
         }).populate("fee", "feeName");
 
-        transactions.map((i) => {
+        transactions.forEach((i) => {
+            console.log(i.section , item.section._id)
+            if (i.section &&  i.section.toString() !== item.section._id.toString()) {
+                console.log("Skip")
+                return; // Skip this iteration if sections don't match
+            }
+            console.log("pushing")
 
             item.fee.push({
                 _id: i.fee,
-                amount: i.feeAmount
-            })
-
-        })
+                amount: i.feeAmount,
+            });
+        });
 
     }));
 
