@@ -16,7 +16,7 @@ const SIDENAV_ITEMS = [
                 title: 'Fix Asset', path: '/setup/bankSetup',
             },
             {
-                title: 'School Setup', path: '/setup/bankSetup', subsubmenu: true,
+                title: 'School Setup', subsubmenu: true,
                 subsubMenuItems: [
                     { title: 'Fee Structure', path: '/setup/school/feeStructure' },
                     { title: 'Class Setup', path: '/setup/school/classSetup' },

@@ -117,10 +117,12 @@ const getAllSchoolFeeDue = CatchAsyncAwait(async (req, res) => {
         }).populate("fee", "feeName");
 
         transactions.map((i) => {
+
             item.fee.push({
                 _id: i.fee,
                 amount: i.feeAmount
             })
+
         })
 
     }));

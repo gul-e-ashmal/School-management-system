@@ -4,7 +4,9 @@ const Header = () => {
     return (
 
         <div className=' flex md:flex-row flex-col   justify-center  bg-blue-400'>
-            <div className='   hidden lg:block md:w-[24%] lg:w-[19%] xl:w-[17%]  '> Logo</div>
+            <div className='    flex justify-center  align-middle md:w-[24%] lg:w-[19%] xl:w-[17%] items-center'>
+                <img width={150} height={150} src={require("../assets/images/logo.png")} className=' ' />
+            </div>
             <div className=' lg:w-[80%]  w-full '>
                 <h1 className=' p-2 text-2xl text-white text-center'>Madrasa-Tul-Banat <span className=' text-[0.9rem] font-bold'> Lake Road Branch</span></h1>
                 <div className=' p-1  bg-blue-300 text-right flex md:flex-row flex-col justify-end text-[0.9rem] items-center'>

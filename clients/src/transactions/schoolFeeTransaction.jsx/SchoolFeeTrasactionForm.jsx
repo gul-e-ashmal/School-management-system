@@ -122,11 +122,13 @@ const SchoolFeeTrasactionForm = ({ setFormData, formData, edit, setShowFormPage 
             <select name="transactionType" id="transactionType" className="select"
               value={formData.transactionType}
               onChange={(e) => {
-                setFormData({ ...formData, transactionType: e.target.value })
+                // setFormData({ ...formData, transactionType: e.target.value })
                 if (e.target.value == "All Class") {
-                  setFormData({ ...formData, classes: "all", section: "all", student: "all" })
+                  setFormData({ ...formData, transactionType: e.target.value, classes: "all", section: "all", student: "all" })
                 } else if (e.target.value == "One Class") {
-                  setFormData({ ...formData, student: "all" })
+                  setFormData({ ...formData, student: "all", transactionType: e.target.value })
+                } else {
+                  setFormData({ ...formData, transactionType: e.target.value })
                 }
               }} required
             >
