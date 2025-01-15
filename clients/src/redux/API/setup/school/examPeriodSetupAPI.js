@@ -7,13 +7,13 @@ export const examPeriodSetupAPI = createApi({
     tagTypes: ["examPeriodSetup"],
     endpoints: (builder) => ({
         getExamPeriodSetup: builder.query({
-            query: (param) => ({ url: `/class/feeStructure` }),
+            query: (param) => ({ url: `/examPeriod` }),
             providesTags: ["examPeriodSetup"]
         }),
         createExamPeriodSetup: builder.mutation({
             query(body) {
                 return {
-                    url: `/class/feeStructure/new`,
+                    url: `/examPeriod/new`,
                     method: "POST",
                     body: body
                 }
@@ -23,7 +23,7 @@ export const examPeriodSetupAPI = createApi({
         updateExamPeriodSetup: builder.mutation({
             query(body) {
                 return {
-                    url: `/class/feeStructure/${body._id}`,
+                    url: `/examPeriod/${body._id}`,
                     method: "PUT",
                     body: body
                 }
@@ -33,7 +33,7 @@ export const examPeriodSetupAPI = createApi({
         deleteExamPeriodSetup: builder.mutation({
             query(body) {
                 return {
-                    url: `/class/feeStructure/${body.id}`,
+                    url: `/examPeriod/${body.id}`,
                     method: "DELETE",
                 }
             },
@@ -44,4 +44,5 @@ export const examPeriodSetupAPI = createApi({
 })
 
 export const {
+    useGetExamPeriodSetupQuery, useCreateExamPeriodSetupMutation, useUpdateExamPeriodSetupMutation, useDeleteExamPeriodSetupMutation
 } = examPeriodSetupAPI

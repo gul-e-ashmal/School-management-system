@@ -12,6 +12,7 @@ import { schoolFeeDueSetupAPI } from "./API/setup/school/schoolFeeDueApi";
 import { schoolFeeTransactionSetupAPI } from "./API/transaction/schoolFeeTransactionAPI";
 import { subjectSetupAPI } from "./API/setup/school/subjectSetupAPI";
 import { classWiseSubjectEntryAPI } from "./API/setup/school/classWiseSubjectEntryAPI";
+import { examPeriodSetupAPI } from "./API/setup/school/examPeriodSetupAPI";
 
 const Store = configureStore({
     reducer: {
@@ -27,6 +28,7 @@ const Store = configureStore({
 
         [subjectSetupAPI.reducerPath]: subjectSetupAPI.reducer,
         [classWiseSubjectEntryAPI.reducerPath]: classWiseSubjectEntryAPI.reducer,
+        [examPeriodSetupAPI.reducerPath]: examPeriodSetupAPI.reducer,
 
 
         [schoolFeeDueSetupAPI.reducerPath]: schoolFeeDueSetupAPI.reducer,
@@ -37,7 +39,7 @@ const Store = configureStore({
         [bankSetupAPI.middleware, sectionSetupAPI.middleware, classSetupAPI.middleware, quarterSetupAPI.middleware,
         feeStructureAPI.middleware, companySetupAPI.middleware, branchSetupAPI.middleware, studentSetupAPI.middleware,
         classWiseFeeStructureSetupAPI.middleware, schoolFeeDueSetupAPI.middleware, schoolFeeTransactionSetupAPI.middleware,
-        subjectSetupAPI.middleware, classWiseSubjectEntryAPI.middleware
+        subjectSetupAPI.middleware, classWiseSubjectEntryAPI.middleware, examPeriodSetupAPI.middleware
         ]
     ),
 },

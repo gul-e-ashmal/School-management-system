@@ -18,6 +18,7 @@ const ClassModel = require('./models/ClassModel');
 
 const SubjectRoutes = require("./routes/SubjectRoutes")
 const ClassWiseSubjectEntryRoutes = require("./routes/ClassWiseSubjectEntryRoutes")
+const ExamPeriodRoutes = require("./routes/ExamPeriodRoutes")
 
 
 
@@ -62,7 +63,7 @@ app.use("/setups/school", BankRoutes)
 
 app.use("/setups/school", SubjectRoutes)
 app.use("/setups/school", ClassWiseSubjectEntryRoutes)
-
+app.use("/setups/school", ExamPeriodRoutes)
 
 
 // transactions
