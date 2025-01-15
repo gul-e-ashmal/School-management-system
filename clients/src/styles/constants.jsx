@@ -22,10 +22,16 @@ const SIDENAV_ITEMS = [
                     { title: 'Class Setup', path: '/setup/school/classSetup' },
                     { title: 'Section Setup', path: '/setup/school/sectionSetup' },
                     { title: 'Student Registration', path: '/setup/school/studentSetup' },
+                    { title: "---------------", path: '' },
                     { title: 'Period Setup/Quarter', path: '/setup/school/quarterSetup' },
                     { title: 'Bank Setup', path: '/setup/school/bankSetup' },
                     { title: 'Branch Setup', path: '/setup/school/branchSetup' },
-                    { title: 'Class wise fee structure', path: '/setup/school/classWiseFeeStructure' }
+                    { title: 'Class wise fee structure', path: '/setup/school/classWiseFeeStructure' },
+                    { title: "---------------", path: '' },
+                    { title: "Subject Entry", path: '/setup/school/subjectSetup' },
+                    { title: "Class Wise Subject Entry", path: '/setup/school/classWiseSubjectEntry' },
+                    { title: "Exam period Setup", path: '/setup/school/examPeriodSetup' },
+                    { title: "Teacher Class Timetable", path: '/setup/school/teacherClassTimetable' },
                 ]
             }
         ],

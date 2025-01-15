@@ -16,17 +16,21 @@ const SchoolFeeDueRoutes = require("./routes/SchoolFeeDueRoutes")
 const SchoolFeeTransactionRoutes = require("./routes/SchoolFeeTransactionRoutes");
 const ClassModel = require('./models/ClassModel');
 
+const SubjectRoutes = require("./routes/SubjectRoutes")
+const ClassWiseSubjectEntryRoutes = require("./routes/ClassWiseSubjectEntryRoutes")
+
+
 
 const app = express();
 
 app.options("", cors({
     origin: `*`, // Allow requests from your frontend
-    methods: ['GET', 'POST', 'PUT', 'DELETE','PATCH'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     credential: true
 }))
 app.use(cors({
     origin: `*`, // Allow requests from your frontend
-    methods: ['GET', 'POST', 'PUT', 'DELETE','PATCH'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     credential: true
 }));
 
@@ -55,6 +59,11 @@ app.use("/setups/school", SectionRoutes)
 app.use("/setups/school", QuarterRoutes)
 app.use("/setups/school", StudentRoutes)
 app.use("/setups/school", BankRoutes)
+
+app.use("/setups/school", SubjectRoutes)
+app.use("/setups/school", ClassWiseSubjectEntryRoutes)
+
+
 
 // transactions
 app.use("/transactions", SchoolFeeDueRoutes)

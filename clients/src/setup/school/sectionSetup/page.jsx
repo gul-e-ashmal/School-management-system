@@ -21,7 +21,7 @@ const SectionSetup = () => {
         name: ""
     })
 
-    const { data, isError, isSuccess } = useGetSectionQuery({keyword});
+    const { data, isError, isSuccess } = useGetSectionQuery({ keyword });
 
     useEffect(() => {
         if (data) {

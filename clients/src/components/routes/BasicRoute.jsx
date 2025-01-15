@@ -13,6 +13,10 @@ import FeeSlip from '../../transactions/feeSlip/page';
 import FeeCollection from '../../transactions/feeCollection.jsx/page';
 import SchoolFeeTransaction from '../../transactions/schoolFeeTransaction.jsx/page';
 import HomePage from '../HomePage';
+import SubjectSetup from '../../setup/school/subjectSetup/page';
+import ClassWiseSubjectEntry from '../../setup/school/classWiseSubjectEntry/page';
+import ExamPeriodSetup from '../../setup/school/examPeriodSetup/page';
+import TeacherClassTimetable from '../../setup/school/teacherClassTimetable/page';
 
 const BasicRoute = () => {
 
@@ -29,12 +33,19 @@ const BasicRoute = () => {
       <Route path='/setup/school/branchSetup' element={<BranchSetup />} />
       <Route path='/setup/school/classWiseFeeStructure' element={<ClassWiseFeeStructure />} />
 
+      <Route path='/setup/school/subjectSetup' element={<SubjectSetup />} />
+      <Route path='/setup/school/classWiseSubjectEntry' element={<ClassWiseSubjectEntry />} />
+      <Route path='/setup/school/examPeriodSetup' element={<ExamPeriodSetup />} />
+      <Route path='/setup/school/teacherClassTimetable' element={<TeacherClassTimetable />} />
+
+
+
+
 
       {/* transaction */}
       <Route path='/transactions/feeProcess' element={<FeeProcess />} />
       <Route path='/transactions/feeSlip' element={<FeeSlip />} />
       <Route path='/transactions/feeCollection' element={<FeeCollection />} />
-
       <Route path='/transactions/schoolFeeTransaction' element={<SchoolFeeTransaction />} />
 
 

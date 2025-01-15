@@ -14,7 +14,7 @@ const newStudent = CatchAsyncAwait(async (req, res) => {
     console.log(student);
 
     if (!student) {
-       student = await Student.create({
+        student = await Student.create({
             rollNo, name, fatherName, gender, company, branch, class: classes, section, department, address1, address2, phoneNo,
             admissionDate, leavingDate, feeConcession, currentFee, computerFee, bookPrice, refundAmount, refundDate, fee
         });
